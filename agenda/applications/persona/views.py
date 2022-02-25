@@ -26,3 +26,14 @@ class PersonListApiView(ListAPIView):
 
 class PersonListView(TemplateView):
     template_name = "persona/lista.html"
+    
+class PersonSearchApiView(ListAPIView): 
+    serializer_class = PersonSerializer
+       
+    def get_queryset(self):
+           # Retorna en base a un parámetro de búsqueda
+           # Filtramos datos
+        kword = self.kwargs['kword']
+        return Person.objects.filter(
+            full_name__icontains=kword
+        )

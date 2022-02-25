@@ -19,4 +19,8 @@ urlpatterns = [
         views.PersonListView.as_view(),
         name='lista'
     ),
+    path(
+        'api/persona/search/<kword>/',
+        views.PersonSearchApiView.as_view(),
+    ),
 ]

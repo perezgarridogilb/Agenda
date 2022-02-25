@@ -25,7 +25,7 @@ Clave - valor
 ```
 # REST Architecture
 Es una interfaz para conectar sistemas basados en el protocolo HTTP
-Recuperar información sobre el recurso
+Recuperar información sobre el recurso.
 
 ## Methods
 GET: Recuperar información sobre el recurso API REST
@@ -105,7 +105,7 @@ class PersonSerializer(serializers.ModelSerializer):
 ```
 
 ### urls.py
-El que activa una vista es una url
+El que activa una vista es una url.
 ```
 from django.urls import path, re_path
 from . import views
@@ -124,7 +124,38 @@ urlpatterns = [
 
 <img width="1392" alt="Captura de Pantalla 2022-02-24 a la(s) 1 14 17 a m" src="https://user-images.githubusercontent.com/56992179/155651838-705088c1-84b5-43be-9674-65ef25df9dfc.png">
 
+## views.py
+Realiza el filtrado de datos
+```
+class PersonSearchApiView(ListAPIView): 
+       serializer_class = PersonSerializer
+       
+       def get_queryset(self):
+           # Retorna en base a un parámetro de búsqueda
+           # Filtramos datos
+           kword = self.kwargs['kword']
+           return Person.objects.all(
+               full_name__icontains=kword
+           ) 
+```
+
 # Vue.js
 
 <img width="1372" alt="Captura de Pantalla 2022-02-24 a la(s) 10 00 44 p m" src="https://user-images.githubusercontent.com/56992179/155651910-497a6e33-bff4-4ee4-8838-18dc39f3a6bf.png">
 
+## search.js
+Vue.js es el que realiza la búsqueda, llamando a nuestra API */api/persona/search/*
+```
+  methods: {
+    buscar_persona: function(kword){
+      var self = this;
+      axios.get('/api/persona/search/' + kword + '/')
+        .then(function (response) {
+          self.listaPersonas = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+```
