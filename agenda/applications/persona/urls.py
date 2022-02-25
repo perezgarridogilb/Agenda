@@ -14,4 +14,9 @@ urlpatterns = [
         'api/persona/lista/',
         views.PersonListApiView.as_view(),
     ),
+    path(
+        'lista/',
+        views.PersonListView.as_view(),
+        name='lista'
+    ),
 ]

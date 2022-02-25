@@ -82,6 +82,7 @@ from .serializers import PersonSerializer
 class PersonListApiView(ListAPIView):
 
     # Detallamos bajo qué serializador queremos que muestre el resultado
+    # En vez de pasarle un template_name le pasamos un serializador
     serializer_class = PersonSerializer
 
     def get_queryset(self):
@@ -118,3 +119,12 @@ urlpatterns = [
     ),
 ]
 ```
+
+# API
+
+<img width="1392" alt="Captura de Pantalla 2022-02-24 a la(s) 1 14 17 a m" src="https://user-images.githubusercontent.com/56992179/155651838-705088c1-84b5-43be-9674-65ef25df9dfc.png">
+
+# Vue.js
+
+<img width="1372" alt="Captura de Pantalla 2022-02-24 a la(s) 10 00 44 p m" src="https://user-images.githubusercontent.com/56992179/155651910-497a6e33-bff4-4ee4-8838-18dc39f3a6bf.png">
+
