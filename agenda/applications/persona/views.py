@@ -4,7 +4,12 @@ from django.shortcuts import render
 
 from django.views.generic import ListView, TemplateView
 
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import (
+    ListAPIView,
+    CreateAPIView,
+    RetrieveAPIView,
+    DestroyAPIView
+    )
 
 from .models import Person
 
@@ -37,3 +42,21 @@ class PersonSearchApiView(ListAPIView):
         return Person.objects.filter(
             full_name__icontains=kword
         )
+        
+# Siempre recibimos serializadores
+class PersonCreateView(CreateAPIView):
+    # form_class = Formulario   
+    
+    # En su defecto necesitaría un JSON
+    serializer_class = PersonSerializer   
+    
+class PersonDetailView(RetrieveAPIView):
+     
+    # Requiere saber de dónde lo va a recuperar 
+    serializer_class = PersonSerializer
+    # queryset = Person.objects.filter()
+    queryset = Person.objects.all() 
+    
+class PersonDeleteView(DestroyAPIView):
+    serializer_class = PersonSerializer
+    queryset = Person.objects.all()        
