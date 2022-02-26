@@ -8,7 +8,10 @@ from rest_framework.generics import (
     ListAPIView,
     CreateAPIView,
     RetrieveAPIView,
-    DestroyAPIView
+    DestroyAPIView,
+    UpdateAPIView,
+    # Recupera y actualiza
+    RetrieveUpdateAPIView
     )
 
 from .models import Person
@@ -54,9 +57,24 @@ class PersonDetailView(RetrieveAPIView):
      
     # Requiere saber de dónde lo va a recuperar 
     serializer_class = PersonSerializer
+    
     # queryset = Person.objects.filter()
     queryset = Person.objects.all() 
     
 class PersonDeleteView(DestroyAPIView):
     serializer_class = PersonSerializer
-    queryset = Person.objects.all()        
+    queryset = Person.objects.all()  
+    
+class PersonUpdateView(UpdateAPIView):
+    # El serializardor, con el cual va a recibir los datos
+    serializer_class = PersonSerializer
+    
+    # Deacuerdo al pk que queremos encontrar en el enlace
+    queryset = Person.objects.all()   
+    
+class PersonRetriveUpdateView(RetrieveUpdateAPIView):
+    # El serializardor, con el cual va a recibir los datos
+    serializer_class = PersonSerializer
+    
+    # Deacuerdo al pk que queremos encontrar en el enlace
+    queryset = Person.objects.all()                 
