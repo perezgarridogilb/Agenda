@@ -43,4 +43,8 @@ urlpatterns = [
         'api/persona/modificar/<pk>/',
         views.PersonRetriveUpdateView.as_view(),
     ),
+    path(
+        'api/persona/',
+        views.PersonApiLista.as_view(),
+    ),
 ]

@@ -16,7 +16,10 @@ from rest_framework.generics import (
 
 from .models import Person
 
-from .serializers import PersonSerializer
+from .serializers import (
+    PersonSerializer,
+    PersonaSerializer
+)
 
 class ListaPersonas(ListView):
     template_name = "persona/personas.html"
@@ -77,4 +80,25 @@ class PersonRetriveUpdateView(RetrieveUpdateAPIView):
     serializer_class = PersonSerializer
     
     # Deacuerdo al pk que queremos encontrar en el enlace
-    queryset = Person.objects.all()                 
+    queryset = Person.objects.all()
+    
+class PersonApiLista(ListAPIView):
+    """
+        Vista para interactuar con serializadores
+    """
+    # Cuando intentemos serializar algo siempre el serializador va a recibir un queryset
+    # Ya sea un queryset de un sólo elemento:
+    # Tiene que ser un elemento con determinada estructura
+    # 
+    serializer_class = PersonaSerializer
+    
+    def get_queryset(self):
+        # Si se intenta serializar esto:
+        # lista_aux = ['Juan', 'Pedro']
+        # return lista_aux
+        
+        # Va a determinar un error
+        # Ya sea un serializador conectado a un modelo / manual
+        # Espera un objeto que tenga estas caracteristicas:
+        # id = serializers.IntegerField(), full_name = serializers.CharField(), job = serializers.CharField(), ..., n  
+        return Person.objects.all()
