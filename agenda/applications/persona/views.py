@@ -18,7 +18,8 @@ from .models import Person
 
 from .serializers import (
     PersonSerializer,
-    PersonaSerializer
+    PersonaSerializer,
+    PersonaSerializer1
 )
 
 class ListaPersonas(ListView):
@@ -90,7 +91,8 @@ class PersonApiLista(ListAPIView):
     # Ya sea un queryset de un sólo elemento:
     # Tiene que ser un elemento con determinada estructura
     # 
-    serializer_class = PersonaSerializer
+    # serializer_class = PersonaSerializer
+    serializer_class = PersonaSerializer1
     
     def get_queryset(self):
         # Si se intenta serializar esto:

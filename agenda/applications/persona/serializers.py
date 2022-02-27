@@ -23,4 +23,12 @@ class PersonaSerializer(serializers.Serializer):
     
     # Puede suceder que requiramos atributos extras, para ello se usó el parámetro default = false, o en su defecto:
     activo = serializers.BooleanField(required=False)  
-    # En caso de que no queramos que aparezca, el que lo tenga, aparece, el que no, no aparece en nuestro Frontend, en caso de que se lo envíen desde allí  
+    # En caso de que no queramos que aparezca, el que lo tenga, aparece, el que no, no aparece en nuestro Frontend, en caso de que se lo envíen desde allí
+    
+class PersonaSerializer1(serializers.ModelSerializer):
+    
+    activo = serializers.BooleanField(default=False)
+    
+    class Meta:
+        model = Person
+        fields = ('__all__')      
