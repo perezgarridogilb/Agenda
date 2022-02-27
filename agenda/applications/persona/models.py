@@ -14,7 +14,7 @@ class Hobby(TimeStampedModel):
     
     class Meta:
         verbose_name = 'Hobby'
-        verbose_name_plural = 'hobbies'
+        verbose_name_plural = 'Hobbies'
     
     def __str__(self):
         return self.hobby
@@ -41,7 +41,7 @@ class Person(TimeStampedModel):
         blank=True,
     )
     
-    Hobbies = models.ManyToManyField(Hobby)
+    hobbies = models.ManyToManyField(Hobby)
 
     class Meta:
         verbose_name = 'Persona'

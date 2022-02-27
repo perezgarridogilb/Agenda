@@ -14,12 +14,14 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView
     )
 
-from .models import Person
+from .models import Person, Reunion
 
 from .serializers import (
     PersonSerializer,
     PersonaSerializer,
-    PersonaSerializer1
+    PersonaSerializer1,
+    ReunionSerializer,
+    PersonaSerializer2
 )
 
 class ListaPersonas(ListView):
@@ -92,7 +94,7 @@ class PersonApiLista(ListAPIView):
     # Tiene que ser un elemento con determinada estructura
     # 
     # serializer_class = PersonaSerializer
-    serializer_class = PersonaSerializer1
+    serializer_class = PersonaSerializer2
     
     def get_queryset(self):
         # Si se intenta serializar esto:
@@ -104,3 +106,14 @@ class PersonApiLista(ListAPIView):
         # Espera un objeto que tenga estas caracteristicas:
         # id = serializers.IntegerField(), full_name = serializers.CharField(), job = serializers.CharField(), ..., n  
         return Person.objects.all()
+    
+class ReunionApiLista(ListAPIView):
+    """
+        Vista para interactuar con serializadores
+    """
+    
+    serializer_class = ReunionSerializer
+    
+    def get_queryset(self):
+         
+        return Reunion.objects.all()    

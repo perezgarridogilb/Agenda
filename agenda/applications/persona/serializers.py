@@ -1,7 +1,7 @@
 import email
 from rest_framework import serializers
 
-from .models import Person
+from .models import Hobby, Person, Reunion, Hobby
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,4 +31,44 @@ class PersonaSerializer1(serializers.ModelSerializer):
     
     class Meta:
         model = Person
-        fields = ('__all__')      
+        fields = ('__all__')
+        
+class ReunionSerializer(serializers.ModelSerializer):
+    
+    # Serializando todos los valores de persona
+    persona = PersonSerializer()
+    
+    class Meta:
+        # Serializador conectado al modelo
+        model = Reunion
+        fields = (
+            'id',
+            'fecha',
+            'hora',
+            'asunto',
+            'persona',
+            )              
+
+class HobbySerializer(serializers.ModelSerializer):
+    
+    class Meta: 
+        model = Hobby
+        fields = ('__all__')
+
+class PersonaSerializer2(serializers.ModelSerializer):
+
+    # Que serialize y que tenga una colección, no un sólo elemento
+    hobbies = HobbySerializer(many=True)
+
+    class Meta: 
+        model = Person
+        fields = (
+            'id',
+            'full_name',
+            'job',
+            'email',
+            'phone',
+            'hobbies',
+            'created',
+            )
+        
