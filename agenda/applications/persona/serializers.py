@@ -71,4 +71,25 @@ class PersonaSerializer2(serializers.ModelSerializer):
             'hobbies',
             'created',
             )
+
+class ReunionSerializer1(serializers.ModelSerializer): 
+    
+    # Una concatenación como un método adicional
+    fecha_hora = serializers.SerializerMethodField()
+    
+    class Meta:
+        # Serializador conectado al modelo
+        model = Reunion
+        fields = (
+            'id',
+            'fecha',
+            'hora',
+            'asunto',
+            'persona',
+            # Importante: Hace falta agregar aunque no pertenezca al modelo
+            'fecha_hora'
+            )              
+    
+    def get_fecha_hora(self, obj):
+        return str(obj.fecha) + ' - ' + str(obj.hora)
         
