@@ -30,6 +30,7 @@ urlpatterns = [
     path(
         'api/persona/detail/<pk>/',
         views.PersonDetailView.as_view(),
+        name='detalle'
     ),
     path(
         'api/persona/delete/<pk>/',
@@ -51,4 +52,8 @@ urlpatterns = [
         'api/reunion/',
         views.ReunionApiLista.as_view(),
     ),
+    path(
+        'api/reunion-link/',
+        views.ReunionApiListaLink.as_view(),
+    ),    
 ]

@@ -1,5 +1,5 @@
 import email
-from rest_framework import serializers
+from rest_framework import serializers, pagination
 
 from .models import Hobby, Person, Reunion, Hobby
 
@@ -72,12 +72,11 @@ class PersonaSerializer2(serializers.ModelSerializer):
             'created',
             )
 
-class ReunionSerializer1(serializers.ModelSerializer): 
-    
-    # Una concatenación como un método adicional
-    fecha_hora = serializers.SerializerMethodField()
-    
-    class Meta:
+class ReunionSerializerLink(serializers.HyperlinkedModelSerializer): 
+    # Convirtiendo el foreing key en un link
+    # HyperlinkedModelSerializer: Tiene una funcionalidad extra
+    # Que el modelo, en vez de cargar el id que sea un enlace
+    class Meta: 
         # Serializador conectado al modelo
         model = Reunion
         fields = (
@@ -86,10 +85,8 @@ class ReunionSerializer1(serializers.ModelSerializer):
             'hora',
             'asunto',
             'persona',
-            # Importante: Hace falta agregar aunque no pertenezca al modelo
-            'fecha_hora'
-            )              
-    
-    def get_fecha_hora(self, obj):
-        return str(obj.fecha) + ' - ' + str(obj.hora)
+            )  
+        extra_kwargs = { 
+                'persona': {'view_name': 'persona_app:detalle', 'lookup_field': 'pk' }
+            }   
         

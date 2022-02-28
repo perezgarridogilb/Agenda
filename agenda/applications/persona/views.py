@@ -11,7 +11,7 @@ from rest_framework.generics import (
     DestroyAPIView,
     UpdateAPIView,
     # Recupera y actualiza
-    RetrieveUpdateAPIView
+    RetrieveUpdateAPIView,
     )
 
 from .models import Person, Reunion
@@ -21,11 +21,11 @@ from .serializers import (
     PersonaSerializer,
     PersonaSerializer1,
     ReunionSerializer,
-    PersonaSerializer2,
-    ReunionSerializer1
+    PersonaSerializer2, 
+    ReunionSerializerLink
 )
 
-class ListaPersonas(ListView):
+class ListaPersonas(ListView): 
     template_name = "persona/personas.html"
     context_object_name = 'personas'
 
@@ -113,8 +113,19 @@ class ReunionApiLista(ListAPIView):
         Vista para interactuar con serializadores
     """
     
-    serializer_class = ReunionSerializer1
+    serializer_class = ReunionSerializer
     
     def get_queryset(self):
          
         return Reunion.objects.all()    
+    
+class ReunionApiListaLink(ListAPIView):
+    """
+        Vista para interactuar con serializadores
+    """
+    
+    serializer_class = ReunionSerializerLink
+    
+    def get_queryset(self):
+         
+        return Reunion.objects.all()     
