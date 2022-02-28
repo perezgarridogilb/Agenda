@@ -159,3 +159,27 @@ Vue.js es el que realiza la búsqueda, llamando a nuestra API */api/persona/sear
     },
   },
 ```
+
+# Special consults
+Se utilizan para realizar consultas especiales según el ORM (especificándole a models), en este caso se tuvo que serializar la estructura de retorno en de la variable "resultado" del tipo queryset al tipo de caracteristicas manualmente.
+
+## managers.py 
+```
+class ReunionManager(models.Manager): 
+    
+    def cantidad_reuniones_job(self): 
+        # Cuántas veces aparece
+        resultado = self.values('persona__job').annotate(
+            cantidad=Count('id')
+        )
+        print('**************')
+        print(resultado)
+        return resultado
+```
+
+# serializers.py
+```
+class CountReunionSerializer(serializers.Serializer):
+    persona__job = serializers.CharField()
+    cantidad = serializers.IntegerField()  
+```

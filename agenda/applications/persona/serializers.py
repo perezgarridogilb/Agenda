@@ -95,4 +95,8 @@ class PersonPagination(pagination.PageNumberPagination):
     page_size = 5
     # De bloques de cien
     # Menor más rápida
-    max_page_size = 100       
+    max_page_size = 100  
+    
+class CountReunionSerializer(serializers.Serializer):
+    persona__job = serializers.CharField()
+    cantidad = serializers.IntegerField()         

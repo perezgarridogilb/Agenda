@@ -3,8 +3,9 @@ from tabnanny import verbose
 from model_utils.models import TimeStampedModel
 #
 from django.db import models
-
 #
+from .managers import ReunionManager
+
 class Hobby(TimeStampedModel):
     """ Pasa tiempos """
     hobby = models.CharField(
@@ -64,6 +65,8 @@ class Reunion(TimeStampedModel):
          'Asunto de Reunión',
          max_length=100
      )
+     
+     objects = ReunionManager()
      
      class Meta:
          verbose_name = 'Reunión'

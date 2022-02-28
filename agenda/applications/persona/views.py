@@ -23,7 +23,8 @@ from .serializers import (
     ReunionSerializer,
     PersonaSerializer2, 
     ReunionSerializerLink,
-    PersonPagination
+    PersonPagination,
+    CountReunionSerializer
 )
 
 class ListaPersonas(ListView): 
@@ -149,3 +150,10 @@ class PersonPaginationList(ListAPIView):
         # Espera un objeto que tenga estas caracteristicas:
         # id = serializers.IntegerField(), full_name = serializers.CharField(), job = serializers.CharField(), ..., n  
         return Person.objects.all()    
+    
+class ReunionByPersonJob(ListAPIView): 
+    
+    serializer_class = CountReunionSerializer  
+    
+    def get_queryset(self):
+        return Reunion.objects.cantidad_reuniones_job() 
