@@ -22,7 +22,8 @@ from .serializers import (
     PersonaSerializer1,
     ReunionSerializer,
     PersonaSerializer2, 
-    ReunionSerializerLink
+    ReunionSerializerLink,
+    PersonPagination
 )
 
 class ListaPersonas(ListView): 
@@ -129,3 +130,22 @@ class ReunionApiListaLink(ListAPIView):
     def get_queryset(self):
          
         return Reunion.objects.all()     
+    
+class PersonPaginationList(ListAPIView): 
+    """
+        Lista de personas con paginación
+    """
+ 
+    serializer_class = PersonaSerializer 
+    pagination_class = PersonPagination
+    
+    def get_queryset(self): 
+        # Si se intenta serializar esto:
+        # lista_aux = ['Juan', 'Pedro']
+        # return lista_aux
+        
+        # Va a determinar un error
+        # Ya sea un serializador conectado a un modelo / manual
+        # Espera un objeto que tenga estas caracteristicas:
+        # id = serializers.IntegerField(), full_name = serializers.CharField(), job = serializers.CharField(), ..., n  
+        return Person.objects.all()    

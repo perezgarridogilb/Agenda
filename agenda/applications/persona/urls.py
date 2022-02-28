@@ -56,4 +56,8 @@ urlpatterns = [
         'api/reunion-link/',
         views.ReunionApiListaLink.as_view(),
     ),    
+    path(
+        'api/personas/paginacion/',
+        views.PersonPaginationList.as_view(),
+    ),      
 ]

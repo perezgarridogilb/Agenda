@@ -89,4 +89,10 @@ class ReunionSerializerLink(serializers.HyperlinkedModelSerializer):
         extra_kwargs = { 
                 'persona': {'view_name': 'persona_app:detalle', 'lookup_field': 'pk' }
             }   
-        
+
+class PersonPagination(pagination.PageNumberPagination):
+    # En cinco en cinco
+    page_size = 5
+    # De bloques de cien
+    # Menor más rápida
+    max_page_size = 100       
