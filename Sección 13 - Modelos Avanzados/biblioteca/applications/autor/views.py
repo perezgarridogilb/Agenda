@@ -15,6 +15,6 @@ class ListAutores(ListView):
         # Recuperar lo que se está enviando a través del identificador kword 
         palabra_clave = self.request.GET.get("kword", '') # kword y tupla
         # El valor que estamos recogiendo de la caja de txt del html
-        return Autor.objects.buscar_autor1(palabra_clave)
+        return Autor.objects.buscar_autor3(palabra_clave)
     
 
