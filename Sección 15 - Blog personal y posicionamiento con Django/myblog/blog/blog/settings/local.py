@@ -31,6 +31,18 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom' : [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'OutIdent', 'Ident', '-', 'JustifyLeft', 'JustifyRight', 'JustifyCenter'],
+            ['TextColor', 'Format', 'FontSize', 'Link'],
+            ['Smiley', 'Image', 'Iframe'],
+            ['RemoveFormat', 'Source'],
+        ]
+    },
+}
 
 # EMAIL SETTINGS
 # EMAIL_USE_TLS = True
