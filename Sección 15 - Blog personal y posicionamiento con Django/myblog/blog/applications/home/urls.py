@@ -9,5 +9,10 @@ urlpatterns = [
         '', 
         views.HomePageView.as_view(),
         name='index',
-    ),  
+    ), 
+    path(
+        'register-suscription', 
+        views.SuscriberCreateView.as_view(),
+        name='add-suscription',
+    ),   
 ]
