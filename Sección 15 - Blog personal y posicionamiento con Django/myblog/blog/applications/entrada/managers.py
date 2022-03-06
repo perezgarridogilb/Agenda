@@ -15,6 +15,7 @@ class EntryManager(models.Manager):
         return self.filter(
             public=True,
             in_home=True,
+            # Ordenado por fecha de creación para los primeros cuatro registrados
         ).order_by('-created')[:4]
 
 

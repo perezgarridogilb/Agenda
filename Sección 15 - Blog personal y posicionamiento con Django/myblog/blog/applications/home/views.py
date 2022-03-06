@@ -20,5 +20,9 @@ class HomePageView(TemplateView):
         # Contexto de portada
         # Manager con el nombre entrada_en_portada
         context["portada"] = Entry.objects.entrada_en_portada()
+        # Contexto para los artículos en home
+        context["entradas_home"] = Entry.objects.entradas_en_home()
+        # Entradas recientes
+        context["entradas_recientes"] = Entry.objects.entradas_recientes()
         return context
     
