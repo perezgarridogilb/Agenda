@@ -27,6 +27,7 @@ class EntryManager(models.Manager):
     
     def buscar_entrada(self, kword, categoria):
         # procedimiento para buscar entradas por categoria o palabra clave
+        # Aquí funciona en caso  de que no hayamos seleccionado una categoría
         if len(categoria) > 0:
             return self.filter(
                 category__short_name=categoria,
@@ -34,7 +35,8 @@ class EntryManager(models.Manager):
                 public=True
             ).order_by('-created')
         
-        else:
+        else: 
+            # En caso de que no se haya seleccionado una categoría se hace un filtro en base a una palabra clave
             return self.filter(
                 title__icontains=kword,
                 public=True
