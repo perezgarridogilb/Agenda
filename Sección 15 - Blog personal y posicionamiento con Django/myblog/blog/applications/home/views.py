@@ -17,7 +17,7 @@ from applications.entrada.models import Entry
 from .models import Home
 
 # forms
-from .forms import SuscribersForm
+from .forms import SuscribersForm, ContactForm
 
 class HomePageView(TemplateView):
     template_name = "home/index.html"
@@ -44,4 +44,9 @@ class SuscriberCreateView(CreateView):
     form_class = SuscribersForm 
     
     # CreateView solicita una url
+    success_url = '.'   
+
+# Requerimos que siempre reciba un html bajo el formato de este contact form
+class ContactCreateView(CreateView):
+    form_class = ContactForm 
     success_url = '.'   
