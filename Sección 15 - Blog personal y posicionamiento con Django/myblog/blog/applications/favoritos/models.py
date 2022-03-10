@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from tkinter import Entry
 from django.db import models 
 from django.conf import settings
@@ -8,6 +7,8 @@ from model_utils.models import TimeStampedModel
 # Create your models here.
 
 from applications.entrada.models import Entry
+
+from .managers import FavoritesManager
 
 class Favorites(TimeStampedModel): 
     """ Modelo para favoritos """
@@ -22,6 +23,8 @@ class Favorites(TimeStampedModel):
         related_name='entry_favorites', 
         on_delete=models.CASCADE
     )
+    
+    objects = FavoritesManager()
     
     class Meta:
         # Resguardar el guardado doble de un Usuario y una entrada 
