@@ -1,7 +1,10 @@
-from turtle import title
-from unicodedata import category, name
+# standard library 
+from datetime import timedelta, datetime
+# Django
 from django.db import models
 from django.conf import settings
+# Para generar la URL según nuestro SEO
+from django.template.defaultfilters import slugify
 # Aplicaciones de terceros
 from model_utils.models import TimeStampedModel
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -92,17 +95,18 @@ class Entry(TimeStampedModel):
             }
         )
     
-#    def save(self, *args, **kwargs):
-#        # calculamos el total de segundos de la hora actual
-#        now = datetime.now()
-#        total_time = timedelta(
-#            hours=now.hour,
-#            minutes=now.minute,
-#            seconds=now.second
-#        )
-#        seconds = int(total_time.total_seconds())
-#        slug_unique = '%s %s' % (self.title, str(seconds))
-#
-#        self.slug = slugify(slug_unique)
-#
-#        super(Entry, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        # Calculamos el total de segundos de la hora actual
+        now = datetime.now()
+        total_time = timedelta(
+            hours=now.hour,
+            minutes=now.minute,
+            seconds=now.second
+        )
+        seconds = int(total_time.total_seconds()) 
+        # Concatenando dos cadenas de texto
+        slug_unique = '%s %s' % (self.title, str(seconds))
+        # Convertir a slug
+        self.slug = slugify(slug_unique)
+        # Sobreescribiendo save
+        super(Entry, self).save(*args, **kwargs)
