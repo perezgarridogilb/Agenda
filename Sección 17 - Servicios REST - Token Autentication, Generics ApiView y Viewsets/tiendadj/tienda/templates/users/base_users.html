@@ -35,9 +35,15 @@
             // The signed-in user info.
             var user = result.user;
             // ... 
-            var usToken = result.credential.idToken; 
+            var usToken = user.getIdToken().then( 
+                function(idToken) { 
+                    console.log(idToken) 
+                }).catch(function(error) { 
+                    // Handle error
+                }
+            ); 
             console.log('-*-*') 
-            console.log(usToken) 
+            
         }).catch((error) => {
             // Handle Errors here.
             var errorCode = error.code;
