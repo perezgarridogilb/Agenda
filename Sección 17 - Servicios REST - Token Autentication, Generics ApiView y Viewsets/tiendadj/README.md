@@ -8,4 +8,8 @@ sudo pip3 install firebase-admin
 En caso de error
 ``` 
 sudo apt-get install python3-dev
+``` 
+# Login
+``` 
+http://localhost:8000/login/
 ```

@@ -11,14 +11,27 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-auth-compat.js"></script> 
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script>
     const firebaseApp = firebase.initializeApp({ 
-            apiKey: "AIzaSyA_1jyjtmIEXe0Hp9yoccf9BIkyeXX-6x8",
-            authDomain: "django-pro-22304.firebaseapp.com",
-            projectId: "django-pro-22304",
-            storageBucket: "django-pro-22304.appspot.com",
-            messagingSenderId: "534385630519",
-            appId: "1:534385630519:web:ebd4ade5d22ee913d5ceb2" 
+        apiKey: "AIzaSyCU5lc1d-l1--gi7MCpqhFIUSUqHVph3sc",
+        authDomain: "django-pro1.firebaseapp.com",
+        projectId: "django-pro1",
+        storageBucket: "django-pro1.appspot.com",
+        messagingSenderId: "162792305455",
+        appId: "1:162792305455:web:8488830599b552d47627da"
      });
     const db = firebaseApp.firestore();
     const auth = firebaseApp.auth(); 
@@ -33,6 +46,8 @@
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = credential.accessToken;
             // The signed-in user info.
+
+            // Recuperar token id user
             var user = result.user;
             // ... 
             var usToken = user.getIdToken().then( 
