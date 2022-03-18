@@ -10,6 +10,7 @@ En caso de error
 sudo apt-get install python3-dev
 ``` 
 # Login
+
 ``` 
 http://localhost:8000/login/
 ``` 
@@ -18,3 +19,16 @@ http://localhost:8000/login/
 Si se quiere crear una sesión, se le pasa a a la función login el usuario y "todo seguiría funcionando igual".
 
 <img width="1392" alt="Axios" src="https://user-images.githubusercontent.com/56992179/158735000-792261bf-622f-44ba-8827-e008dd536419.png">
+
+
+## Database Backup Commands 
+Creando respaldo
+``` 
+python manage.py dumpdata --exclude auth.permission > nombre_copia_bd.json
+``` 
+
+Leyendo información de respaldo
+``` 
+python manage.py loaddata tienda_data.json
+``` 
+
