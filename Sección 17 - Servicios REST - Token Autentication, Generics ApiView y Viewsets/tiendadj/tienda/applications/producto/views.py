@@ -22,4 +22,20 @@ class ListProductUser(ListAPIView):
         # recuperando usuario
         print(5*"*")
         usuario = self.request.user
+        print(usuario)
         return Product.objects.productos_por_user(usuario)
+
+class ListProductStok(ListAPIView):
+    serializer_class = ProductSerializer 
+    # Paquete drescifra token 
+    # Autentica que el token le pertenece a un usuario
+    authentication_clases = (TokenAuthentication,) 
+    
+    # [IsAuthenticated, IsAdminUser]: Autenticación para usuarios administradores 
+    # Interfiere si se carga o no se carga 
+    permission_classes = [IsAuthenticated, IsAdminUser]
+    
+    def get_queryset(self): 
+        # recuperando usuario
+        return Product.objects.productos_con_stok()
+

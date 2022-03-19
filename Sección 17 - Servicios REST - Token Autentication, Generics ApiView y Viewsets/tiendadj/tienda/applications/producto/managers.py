@@ -6,3 +6,9 @@ class ProductManager(models.Manager):
         return self.filter( 
             user_created=usuario,
         )
+        
+    def productos_con_stok(self): 
+        return self.filter( 
+            stok__gt=0,
+            # Enumerar por el número de ventas
+        ).order_by('-num_sales')
