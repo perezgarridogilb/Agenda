@@ -38,4 +38,12 @@ class ListProductStok(ListAPIView):
     def get_queryset(self): 
         # recuperando usuario
         return Product.objects.productos_con_stok()
+    
+class ListProductGenero(ListAPIView):
+    serializer_class = ProductSerializer 
+        
+    def get_queryset(self): 
+        # recuperando usuario 
+        genero = self.kwargs['gender']
+        return Product.objects.productos_por_genero(genero)
 
