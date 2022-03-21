@@ -23,4 +23,6 @@ urlpatterns = [
     re_path('', include('applications.users.urls')), 
     # urls producto
     re_path('', include('applications.producto.urls')),
+    # venta y m 
+    re_path('', include('applications.venta.urls')),
 ]

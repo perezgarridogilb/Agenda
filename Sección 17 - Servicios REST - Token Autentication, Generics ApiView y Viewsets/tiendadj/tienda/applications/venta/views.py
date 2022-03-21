@@ -1,3 +1,19 @@
 from django.shortcuts import render
 
-# Create your views here.
+from rest_framework.generics import ( 
+    ListAPIView                                 
+)
+
+# 
+from .models import Sale
+# serializado 
+from .serializers import VentaReporteSerializers 
+
+class ReporteVentasList(ListAPIView): 
+    
+    serializer_class = VentaReporteSerializers 
+    
+    def get_queryset(self):
+        return Sale.objects.all()
+
+
