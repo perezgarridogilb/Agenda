@@ -31,4 +31,11 @@ Leyendo información de respaldo
 ``` 
 python manage.py loaddata tienda_data.json
 ``` 
+## Multiple parameters from URL
+Ejemplo
 
+``` 
+http://127.0.0.1:8000/api/product/filtrar/?man=False&woman=True&name=a
+``` 
+
+<img width="1392" alt="Captura de Pantalla 2022-03-21 a la(s) 2 49 19 a m" src="https://user-images.githubusercontent.com/56992179/159229240-76a279d7-2e30-4409-8e2b-3d235f51f9a4.png">
