@@ -60,3 +60,13 @@ Estructura del body raw/JSON
 
 ### POST
 <img width="1392" alt="Captura de Pantalla 2022-03-23 a la(s) 8 56 35 p m" src="https://user-images.githubusercontent.com/56992179/159833190-1546f761-a290-4969-af9d-fd93e3abaf6e.png">
+
+``` 
+{
+"type_invoce": "0",
+"type_payment": "0",
+"adreese_send": "DirB3",
+"productos": [{"pk":1,"count":2}, {"pk":3, "count":1}]
+}
+
+``` 

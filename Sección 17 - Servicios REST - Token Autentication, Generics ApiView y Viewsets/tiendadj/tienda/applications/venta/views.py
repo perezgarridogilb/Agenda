@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.utils import timezone
 #
+from django.utils import timezone
 from django.shortcuts import render
 #
 from rest_framework.authentication import TokenAuthentication
@@ -50,8 +51,18 @@ class RegistrarVenta(CreateAPIView):
         
         # Para hacer este
         # type_invoce: Dato tipo recibo
-        tipo_recibo = serializer.validated_data['type_invoce'] 
-        """"""
-        
-        print(5*'*', tipo_recibo) 
+        venta = Sale.objects.create( 
+            date_sale=timezone.now(), 
+            amount=0, 
+            count=0, 
+            type_invoce=serializer.validated_data['type_invoce'],
+            type_payment=serializer.validated_data['type_invoce'],
+            adreese_send=serializer.validated_data['adreese_send'],
+            user=self.request.user,
+        )
+        """""" 
+        # recuperamos los productos de la venta 
+        productos = serializer.validated_data['productos'] 
+        print(productos)
+
         return Response({'code':'ok'})
