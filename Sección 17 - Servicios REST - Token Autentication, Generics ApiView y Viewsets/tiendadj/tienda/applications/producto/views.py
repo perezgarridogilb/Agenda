@@ -1,21 +1,21 @@
-
-from unicodedata import name
-from rest_framework.generics import ( 
-     ListAPIView,                                
+# apps de terceros
+from rest_framework.generics import (
+    ListAPIView,
 )
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 #
 from django.shortcuts import render
-# 
-from .serializers import ProductSerializer
-# 
+
+# local models
 from .models import Product
+# local serialiozers
+from .serializers import ProductSerializer
 
 class ListProductUser(ListAPIView):
     serializer_class = ProductSerializer 
     # Paquete drescifra token 
-    authentication_clases = (TokenAuthentication,) 
+    authentication_classes = (TokenAuthentication,) 
     # Tipos de permisos en base a la autenticación 
     permission_classes = [IsAuthenticated]
     
@@ -30,7 +30,7 @@ class ListProductStok(ListAPIView):
     serializer_class = ProductSerializer 
     # Paquete drescifra token 
     # Autentica que el token le pertenece a un usuario
-    authentication_clases = (TokenAuthentication,) 
+    authentication_classes = (TokenAuthentication,) 
     
     # [IsAuthenticated, IsAdminUser]: Autenticación para usuarios administradores 
     # Interfiere si se carga o no se carga 
