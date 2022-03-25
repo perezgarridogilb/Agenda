@@ -63,10 +63,10 @@ Estructura del body raw/JSON
 
 ``` 
 {
-"type_invoce": "0",
+"type_invoce": "1",
 "type_payment": "0",
-"adreese_send": "DirB3",
-"productos": [{"pk":1,"count":2}, {"pk":3, "count":1}]
+"adreese_send": "DirB2",
+"productos": [{"pk": 1,"count": 2}, {"pk": 3, "count": 1}]
 }
 
 ``` 
