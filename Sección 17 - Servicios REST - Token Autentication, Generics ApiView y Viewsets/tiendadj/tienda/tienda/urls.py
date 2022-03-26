@@ -24,5 +24,8 @@ urlpatterns = [
     # urls producto
     re_path('', include('applications.producto.urls')),
     # venta y m 
-    re_path('', include('applications.venta.urls')),
+    re_path('', include('applications.venta.urls')), 
+    
+    # 
+    re_path('', include('applications.producto.routers'))
 ]
