@@ -14,6 +14,10 @@ urlpatterns = [
     path('api/venta/create/', 
          views.RegistrarVenta.as_view(), 
          name='venta-register'
+    ), 
+    path('api/venta/add/', 
+         views.RegistrarVenta1.as_view(), 
+         name='venta-add'
     )
     
     ]

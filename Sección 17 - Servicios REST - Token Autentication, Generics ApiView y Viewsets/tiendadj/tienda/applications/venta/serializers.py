@@ -49,11 +49,25 @@ class ProductDetailSerializers(serializers.Serializer):
     pk = serializers.IntegerField() 
     count = serializers.IntegerField()
        
-        
 class ProcesoVentaSerializer(serializers.Serializer): 
     
     type_invoce = serializers.CharField() 
     type_payment = serializers.CharField()   
     adreese_send = serializers.CharField()  
     productos = ProductDetailSerializers(many=True) 
+    
+#  ListFieldSerializer: Definir de qué tipo va a ser este arreglo (enteros/textos/números grandes/décimales/etc-))
+#  
+
+class ArrayIntegerSerializer(serializers.ListField): 
+    
+    child = serializers.IntegerField()
+   
+class ProcesoVentaSerializer1(serializers.Serializer): 
+    
+    type_invoce = serializers.CharField() 
+    type_payment = serializers.CharField()   
+    adreese_send = serializers.CharField()  
+    productos = ArrayIntegerSerializer() 
+    cantidades = ArrayIntegerSerializer()   
      
