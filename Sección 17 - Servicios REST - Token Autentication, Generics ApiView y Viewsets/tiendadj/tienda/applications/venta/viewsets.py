@@ -14,8 +14,21 @@ from .models import Sale, SaleDetail
 
 class VentasViewSet(viewsets.ViewSet):
     
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = [IsAuthenticated]
-    serializer_class = VentaReporteSerializers
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = [IsAuthenticated]
+
+    # Al parecer no requiere especificar de la misma manera los serializers (deja de ser prioridad)
+    
     # Sin el queryset nos causa error
     queryset = Sale.objects.all()
+    
+    # Sobreescribir los métodos que nosotros necesitemos
+    def list(self, request, *args, **kwargs):
+        queryset = Sale.objects.all()
+        # Sin serializers
+        return Response({'probando': 'viewsets'})
+        
+    def retrieve(self, request, pk=None):
+        return Response({'probando': 'viewsets'})
+    
+    

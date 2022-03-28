@@ -70,3 +70,30 @@ Estructura del body raw/JSON
 }
 
 ``` 
+
+### ViewSet
+Cuando trabajamos con ViewSets, ya es tarea de nosotros comenzar a redefinir como nosotros querramos cada una de nuestras funciones (o lanzará error 404 sin decir nada más cuando no le parezca)
+
+- Todo esto se hace para tener un urls.py más limpio, en este caso el routers.py, el cual utiliza menos código
+
+``` 
+class UserViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        pass
+
+    def create(self, request):
+        pass
+
+    def retrieve(self, request, pk=None):
+        pass
+
+    def update(self, request, pk=None):
+        pass
+
+    def partial_update(self, request, pk=None):
+        pass
+
+    def destroy(self, request, pk=None):
+
+```
