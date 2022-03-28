@@ -97,3 +97,5 @@ class UserViewSet(viewsets.ViewSet):
     def destroy(self, request, pk=None):
 
 ```
+
+Fuente: https://www.django-rest-framework.org/api-guide/viewsets/
