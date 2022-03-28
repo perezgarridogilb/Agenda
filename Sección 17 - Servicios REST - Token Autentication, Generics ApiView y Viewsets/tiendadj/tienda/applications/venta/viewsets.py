@@ -1,9 +1,10 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 # 
 from django.utils import timezone
+from django.shortcuts import get_list_or_404
 # 
 from applications.producto.models import Product
 
@@ -16,12 +17,20 @@ from .models import Sale, SaleDetail
 class VentasViewSet(viewsets.ViewSet):
     
     authentication_classes = (TokenAuthentication,)
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     # Al parecer no requiere especificar de la misma manera los serializers (deja de ser prioridad)
     
     # Sin el queryset nos causa error
     queryset = Sale.objects.all()
+    
+    def get_permissions(self):
+        # AllowAny: Lo acceden todos los usuarios autenticados o no
+        if(self.action=='list') or (self.action=='retrieve'):
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]    
     
     # Sobreescribir los métodos que nosotros necesitemos
     def list(self, request, *args, **kwargs):
@@ -83,6 +92,11 @@ class VentasViewSet(viewsets.ViewSet):
         return Response({'res': 'exitosos'}) 
         
     def retrieve(self, request, pk=None):
-        return Response({'probando': 'viewsets'})
+        # Recuperando el objeto venta
+        # venta = Sale.objects.get(id=pk)
+        venta = get_list_or_404(Sale.objects.all(), pk=pk)
+        # Deserializando un objeto venta
+        serializer = VentaReporteSerializers(venta)
+        return Response(serializer.data)
     
     

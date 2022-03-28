@@ -99,3 +99,8 @@ class UserViewSet(viewsets.ViewSet):
 ```
 
 Fuente: https://www.django-rest-framework.org/api-guide/viewsets/
+
+
+# Manual validations in a serializer
+
+<img width="1392" alt="Manual validations in a serializer" src="https://user-images.githubusercontent.com/56992179/160476794-e2a1246c-1366-46ed-bd7d-ea595aca5cb2.png">
