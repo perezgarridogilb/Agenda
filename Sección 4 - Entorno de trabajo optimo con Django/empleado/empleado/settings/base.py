@@ -1,6 +1,7 @@
 """
 """
 
+from email.mime import application
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,6 +24,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # local apps
+    'applications.departamento',
+    'applications.persona',
 ]
 
 MIDDLEWARE = [
