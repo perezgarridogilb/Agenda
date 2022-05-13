@@ -24,4 +24,4 @@ class Empleado(models.Model):
     # img = models.ImageField(, upload_to=None, height_field=None, width_field=None, max_length=None)
     
     def __str__(self):
-        return self(self.id) + '-' + self.first_name + '-' + self.last_name
+        return str(self.id) + '-' + self.first_name + '-' + self.last_name
