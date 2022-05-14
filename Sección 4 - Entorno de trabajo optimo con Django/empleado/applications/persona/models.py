@@ -2,6 +2,8 @@ from django.db import models
 # 
 from applications.departamento.models import Departamento
 
+from ckeditor.fields import RichTextField
+
 # Cada empleado va a tener un conjunto de habilidades
 
 class Habilidades(models.Model):
@@ -35,6 +37,7 @@ class Empleado(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='empleado', blank=True, null=True)
     habilidades = models.ManyToManyField(Habilidades)
+    hoja_vida = RichTextField()
     
     class Meta:
         verbose_name = 'Mi Empleado'
