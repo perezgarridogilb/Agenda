@@ -28,6 +28,24 @@ class ListByAreaEmpleado(ListView):
         )
         return lista
 
+class ListEmpleadosByKword(ListView): 
+    """ Lista empleados por palabra clave """
+    template_name = 'persona/by_kword.html'
+    context_object_name = 'empleados'
+    
+    def get_queryset(self):
+        print(5*"*")
+        # Haciendo uso del objeto request
+        palabra_clave = self.request.GET.get("kword", '')
+        #print(5*'=', palabra_clave)
+        lista = Empleado.objects.filter(
+           # Atributo del atrito 
+           first_name=palabra_clave
+        )
+        print('Lista resultado:', lista)
+        return lista
+    
+
 # 1.- Listar todos los empleados de la empresa
 # 2.- Listar todos los empleados que pertenecen a un area de la empresa
 # 3.- Listar empleados por trabajo
