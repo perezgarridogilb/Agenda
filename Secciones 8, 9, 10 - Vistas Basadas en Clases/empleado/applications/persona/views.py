@@ -1,8 +1,9 @@
+from dataclasses import fields
 from django.shortcuts import render
 from django.views.generic import (
     ListView,
     CreateView,
-    DetailView
+    DetailView,
 )
 
 from .models import Empleado
@@ -72,6 +73,15 @@ class EmpleadoDetailView(DetailView):
         # Proceso
         context["Titulo"] = 'Empleado del mes'
         return context
+    
+    
+class EmpleadoCreateView(CreateView):
+        template_name = "persona/add.html"
+        model = Empleado
+        # Crea internamente las cajas de texto del prototipo presentado
+        fields = ['first_name', 'last_name', 'job']
+        fields = '__all__'
+    
     
 
 # 1.- Listar todos los empleados de la empresa
