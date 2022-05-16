@@ -9,6 +9,9 @@ from .models import Empleado
 class ListAllEmpleados(ListView):
     template_name = 'persona/list_all.html'
     model = Empleado
+    # Esto ayudaría a ahorrar recursos para los servidores
+    paginate_by=4
+    ordering='first_name'
     context_object_name = 'lista'
     
 class ListByAreaEmpleado(ListView): 
@@ -45,6 +48,16 @@ class ListEmpleadosByKword(ListView):
         print('Lista resultado:', lista)
         return lista
     
+class ListaHabilidadesEmpleado(ListView):
+    """ Lista de habilidades de un empleado """
+    template_name = 'persona/habilidades.html'   
+    context_object_name = 'habilidades'
+    
+    def get_queryset(self):
+        # Recupera un único registro de la Base de Datos 
+        empleado = Empleado.objects.get(id=2)
+        # print(empleado.habilidades.all())
+        return empleado.habilidades.all()
 
 # 1.- Listar todos los empleados de la empresa
 # 2.- Listar todos los empleados que pertenecen a un area de la empresa
