@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import (
     ListView,
-    CreateView
+    CreateView,
+    DetailView
 )
 
 from .models import Empleado
@@ -58,6 +59,20 @@ class ListaHabilidadesEmpleado(ListView):
         empleado = Empleado.objects.get(id=2)
         # print(empleado.habilidades.all())
         return empleado.habilidades.all()
+    
+class EmpleadoDetailView(DetailView):
+    model = Empleado
+    template_name = "persona/detail_empleado.html"    
+    
+    # Lo mismo de ListaHabilidadesEmpleado en get_queryset y ya no nos obliga escribirlo
+    # A menos de intervenir
+    
+    def get_context_data(self, **kwargs):
+        context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
+        # Proceso
+        context["Titulo"] = 'Empleado del mes'
+        return context
+    
 
 # 1.- Listar todos los empleados de la empresa
 # 2.- Listar todos los empleados que pertenecen a un area de la empresa
