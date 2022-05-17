@@ -3,6 +3,7 @@ from django.urls import path
 
 from . import views
 
+app_name = "persona_app"
 
 urlpatterns = [
     # Forma en Django de estar ejecutando vistas genéricas
@@ -11,5 +12,6 @@ urlpatterns = [
     path('buscar-empleado/', views.ListEmpleadosByKword.as_view()),
     path('lista-habilidades-empleado/', views.ListaHabilidadesEmpleado.as_view()),
     path('ver-empleado/<pk>', views.EmpleadoDetailView.as_view()),
-    path('add-empleado/', views.EmpleadoCreateView.as_view()),
+    path('add-empleado/', views.EmpleadoCreateView.as_view(), name="add" ),
+    path('success/', views.SuccessView.as_view(), name="success" ),
 ]

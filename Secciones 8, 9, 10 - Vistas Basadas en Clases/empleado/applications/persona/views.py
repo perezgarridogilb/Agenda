@@ -1,9 +1,11 @@
 from dataclasses import fields
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     CreateView,
     DetailView,
+    TemplateView
 )
 
 from .models import Empleado
@@ -74,14 +76,33 @@ class EmpleadoDetailView(DetailView):
         context["Titulo"] = 'Empleado del mes'
         return context
     
+
+class SuccessView(TemplateView):
+    template_name = "persona/success.html"
+    success_url = reverse_lazy('persona_app:success')
+    
     
 class EmpleadoCreateView(CreateView):
         template_name = "persona/add.html"
         model = Empleado
         # Crea internamente las cajas de texto del prototipo presentado
-        fields = ['first_name', 'last_name', 'job']
-        fields = '__all__'
-    
+        # fields = ['first_name', 'last_name', 'job']
+        fields = [
+            'first_name',
+            'last_name',
+            'job',
+            'departamento',
+            'habilidades',
+        ]
+        success_url = reverse_lazy('persona_app:success')
+        
+        
+        def form_valid(self, form):
+            # Lógica
+            empleado = form.save()
+            empleado.full_name = empleado.first_name + ' ' + empleado.last_name
+            empleado.save()
+            return super(EmpleadoCreateView, self).form_valid(form)
     
 
 # 1.- Listar todos los empleados de la empresa
