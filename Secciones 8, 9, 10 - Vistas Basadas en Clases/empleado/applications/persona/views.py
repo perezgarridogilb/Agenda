@@ -5,6 +5,7 @@ from django.views.generic import (
     ListView,
     CreateView,
     DetailView,
+    UpdateView,
     TemplateView
 )
 
@@ -98,12 +99,33 @@ class EmpleadoCreateView(CreateView):
         
         
         def form_valid(self, form):
-            # Lógica
+            # Lógica | commit=False
             empleado = form.save()
             empleado.full_name = empleado.first_name + ' ' + empleado.last_name
             empleado.save()
             return super(EmpleadoCreateView, self).form_valid(form)
+        
+class EmpleadoUpdateView(UpdateView):
+    template_name = "persona/update.html"        
+    model = Empleado
+    fields = [
+            'first_name',
+            'last_name',
+            'job',
+            'departamento',
+            'habilidades',
+        ]
+    success_url = reverse_lazy('persona_app:success')
     
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print(5*"*")
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        # Lógica
+        print(5*"*")
+        return super(EmpleadoUpdateView, self).form_valid(form)
 
 # 1.- Listar todos los empleados de la empresa
 # 2.- Listar todos los empleados que pertenecen a un area de la empresa
