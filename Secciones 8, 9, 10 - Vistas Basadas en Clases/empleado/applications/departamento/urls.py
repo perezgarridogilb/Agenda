@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 
-def DesdeApps(self):
-    print('====desde la app departamento====')
+from . import views
 
 urlpatterns = [
-    path('departamento/', DesdeApps),
+    path('new-departamento/', views.NewDepartamento.as_view(), name='nuevo_departamento'),
 ]

@@ -1,4 +1,5 @@
 from dataclasses import fields
+from re import template
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -6,6 +7,7 @@ from django.views.generic import (
     CreateView,
     DetailView,
     UpdateView,
+    DeleteView,
     TemplateView
 )
 
@@ -120,12 +122,20 @@ class EmpleadoUpdateView(UpdateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         print(5*"*")
+        print(request.POST)
+        print(request.POST['last_name'])
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         # Lógica
         print(5*"*")
         return super(EmpleadoUpdateView, self).form_valid(form)
+    
+    
+class EmpleadoDeleteView(DeleteView):
+    model = Empleado
+    template_name = "persona/delete.html"    
+    success_url = reverse_lazy('persona_app:success')
 
 # 1.- Listar todos los empleados de la empresa
 # 2.- Listar todos los empleados que pertenecen a un area de la empresa
