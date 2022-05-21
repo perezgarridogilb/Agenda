@@ -13,6 +13,10 @@ from django.views.generic import (
 
 from .models import Empleado
 
+class InicioView(TemplateView):
+    """ Vista que carga la página de inicio """
+    template_name = 'inicio.html'
+
 class ListAllEmpleados(ListView):
     template_name = 'persona/list_all.html'
     model = Empleado
