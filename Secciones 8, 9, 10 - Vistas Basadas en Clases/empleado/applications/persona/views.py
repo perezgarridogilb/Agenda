@@ -19,11 +19,21 @@ class InicioView(TemplateView):
 
 class ListAllEmpleados(ListView):
     template_name = 'persona/list_all.html'
-    model = Empleado
+    # model = Empleado
     # Esto ayudaría a ahorrar recursos para los servidores
     paginate_by=4
     ordering='first_name'
-    context_object_name = 'lista'
+    # context_object_name = 'lista'
+    
+    def get_queryset(self):
+        # Haciendo uso del objeto request
+        palabra_clave = self.request.GET.get("kword", '')
+        
+        lista = Empleado.objects.filter(
+           # icontains: Similar
+           full_name__icontains=palabra_clave
+        )
+        return lista
     
 class ListByAreaEmpleado(ListView): 
     """ Lista empleados de un area """
@@ -51,7 +61,7 @@ class ListEmpleadosByKword(ListView):
         print(5*"*")
         # Haciendo uso del objeto request
         palabra_clave = self.request.GET.get("kword", '')
-        #print(5*'=', palabra_clave)
+        # print(5*'=', palabra_clave)
         lista = Empleado.objects.filter(
            # Atributo del atrito 
            first_name=palabra_clave
