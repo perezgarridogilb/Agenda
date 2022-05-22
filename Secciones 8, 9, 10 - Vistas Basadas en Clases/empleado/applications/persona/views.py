@@ -23,7 +23,7 @@ class ListAllEmpleados(ListView):
     # Esto ayudaría a ahorrar recursos para los servidores
     paginate_by=4
     ordering='first_name'
-    # context_object_name = 'lista'
+    context_object_name = 'empleados'
     
     def get_queryset(self):
         # Haciendo uso del objeto request

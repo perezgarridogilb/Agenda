@@ -14,7 +14,7 @@
             <form method="GET">{% csrf_token %}
                 <input class="form-control" type="text" id="kword" name="kword" placeholder="Buscar empleado">
         </div>
-        <div class="col-4"  style="margin-bottom: 20px;">
+        <div class="col-4" style="margin-bottom: 20px;">
             <button type="submit" class="btn btn-success">Buscar</button>
             </form>
         </div>
@@ -38,12 +38,50 @@
                         <td>{{ e.first_name }}</td>
                         <td>{{ e.last_name }}</td>
                         <td>{{ e.departamento }}</td>
-                        <td><button type="button" class="btn btn-warning" href="{% url 'persona_app:empleado_detail' e.id %}">Ver</button>
+                        <td><a href="{% url 'persona_app:empleado_detail' e.id %}" class="btn btn-warning">Ver</a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="col-10">
+
+            {% if is_paginated %}
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previus_page_number }}" tabindex="-1">Atras</a>
+                    </li>
+                    {% endif %}
+
+                    {% for pagina in paginator.page_range %}
+                    {% if pagina == page_obj.number %}
+                    <li class="page-item active">                        
+                        <a class="page-link" href="?page={{ pagina }}">{{ pagina }}<span
+                        class="sr-only">(current)</span></a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ pagina }}">{{ pagina }}<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+            {% endif %}
+
+
         </div>
     </div>
     {% endblock content %}

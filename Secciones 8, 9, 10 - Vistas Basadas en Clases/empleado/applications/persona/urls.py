@@ -12,7 +12,7 @@ urlpatterns = [
     path('listar-by-area/<shortname>/', views.ListByAreaEmpleado.as_view()),
     path('buscar-empleado/', views.ListEmpleadosByKword.as_view()),
     path('lista-habilidades-empleado/', views.ListaHabilidadesEmpleado.as_view()),
-    path('ver-empleado/<pk>', views.EmpleadoDetailView.as_view()),
+    path('ver-empleado/<pk>/', views.EmpleadoDetailView.as_view(), name="empleado_detail"),
     path('add-empleado/', views.EmpleadoCreateView.as_view(), name="add" ),
     path('success/', views.SuccessView.as_view(), name="success" ),
     path('update-empleado/<pk>/', views.EmpleadoUpdateView.as_view(), name="modificar_empleado" ),
