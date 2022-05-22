@@ -35,9 +35,21 @@ class ListAllEmpleados(ListView):
         )
         return lista
     
+class ListaEmpleadosAdmin(ListView):
+    template_name = 'persona/lista_empleados.html'
+    # model = Empleado
+    # Esto ayudaría a ahorrar recursos para los servidores
+    paginate_by=10
+    ordering='first_name'
+    context_object_name = 'empleados'
+    # Sin el queryet es obligatorio
+    model = Empleado
+    
+    
 class ListByAreaEmpleado(ListView): 
     """ Lista empleados de un area """
     template_name = 'persona/list_by_area.html'
+    context_object_name = 'empleados'
   
     # queryset = Empleado.objects.filter(
     #     departamento__name='contabilidad'
@@ -111,7 +123,7 @@ class EmpleadoCreateView(CreateView):
             'departamento',
             'habilidades',
         ]
-        success_url = reverse_lazy('persona_app:success')
+        success_url = reverse_lazy('persona_app:empleados_admin')
         
         
         def form_valid(self, form):
@@ -131,7 +143,7 @@ class EmpleadoUpdateView(UpdateView):
             'departamento',
             'habilidades',
         ]
-    success_url = reverse_lazy('persona_app:success')
+    success_url = reverse_lazy('persona_app:empleados_admin')
     
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -149,7 +161,7 @@ class EmpleadoUpdateView(UpdateView):
 class EmpleadoDeleteView(DeleteView):
     model = Empleado
     template_name = "persona/delete.html"    
-    success_url = reverse_lazy('persona_app:success')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
 # 1.- Listar todos los empleados de la empresa
 # 2.- Listar todos los empleados que pertenecen a un area de la empresa
