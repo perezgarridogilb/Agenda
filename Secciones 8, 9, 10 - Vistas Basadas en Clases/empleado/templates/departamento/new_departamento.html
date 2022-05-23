@@ -1,19 +1,44 @@
-<h1>Registrar nuevo departamento</h1>
 
-<form method="POST">{% csrf_token %}
-    <h3>Datos Empleado</h3>
-    <p>
-        {{form.nombre}}
-    </p>
-    <p>
-        {{form.apellidos}}
-    </p>
-    <h3>Datos de departamento</h3>
-    <p>
-        {{form.departamento}}
-    </p>    
-    <p>
-        {{form.shortname}}
-    </p>
-    <button type="submit">Guardar</button>
-</form>
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista departamentos
+{% endblock title %}
+
+{% block content %}
+    {% include "includes/header.html" %}
+
+
+    <div class="container">
+        <div class="row">
+            <h1 class="col-10">
+                Registrar nuevo departamento</h1>
+            <form class="col-10" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Nombre:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{form.nombre}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Apellido:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{form.apellidos}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Trabajo:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{form.departamento}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Nombre corto:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{form.shortname}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %} 

@@ -30,7 +30,11 @@ urlpatterns = [
     path('buscar-empleado/', views.ListEmpleadosByKword.as_view()),
     path('lista-habilidades-empleado/', views.ListaHabilidadesEmpleado.as_view()),
     path('ver-empleado/<pk>/', views.EmpleadoDetailView.as_view(), name="empleado_detail"),
-    path('add-empleado/', views.EmpleadoCreateView.as_view(), name="add" ),
+    path(
+        'add-empleado/', 
+        views.EmpleadoCreateView.as_view(), 
+        name="empleado_add" 
+    ),
     path('success/', views.SuccessView.as_view(), name="success" ),
     path(
         'update-empleado/<pk>/', 

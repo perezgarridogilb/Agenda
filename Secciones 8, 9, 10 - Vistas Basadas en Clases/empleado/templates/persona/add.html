@@ -1,14 +1,58 @@
 
-<h1>Registrar Persona</h1>
-<!--
-<input type="text" placeholder="nombres">
-<p></p>
-<input type="text" placeholder="apellidos">
--->
+{% extends 'base.html' %}
 
-<form method="POST">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Agregar</button>
-</form>
+{% block title %}
+    Lista departamentos
+{% endblock title %}
+
+{% block content %}
+    {% include "includes/header.html" %}
+
+    <div class="container">
+        <div class="row">
+            <h1 class="col-10">
+                Registrar empleado
+            </h1>
+            <form class="col-10" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Nombre:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Apellido:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Trabajo:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{ form.job }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Departamento:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{ form.departamento }}
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Habilidades:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{ form.habilidades }}
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Imagen:</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4" placeholder="Password"> -->
+                        {{ form.avatar }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+
 
 

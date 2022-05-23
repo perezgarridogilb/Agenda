@@ -7,9 +7,9 @@ app_name = "departamento_app"
 
 urlpatterns = [
     path(
-        'new-list/', 
+        'new-departamento/', 
         views.NewDepartamento.as_view(), 
-        name='nuevo_list'
+        name='nuevo_departamento'
     ),
     
     path(

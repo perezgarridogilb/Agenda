@@ -31,3 +31,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 # Donde se guardaran los archivos estáticos
 STATICFILES_DIRS = [BASE_DIR.child('static')]
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR.child('media')
